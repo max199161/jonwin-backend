@@ -1,0 +1,32 @@
+{
+  "kind": "singleType",
+  "collectionName": "homes",
+  "info": {
+    "singularName": "home",
+    "pluralName": "homes",
+    "displayName": "Home",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "sections": {
+      "type": "dynamiczone",
+      "components": [
+        "homepage.hero",
+        "homepage.license-partners-section",
+        "homepage.business-section",
+        "homepage.retail-point-section",
+        "homepage.news-and-press-section",
+        "homepage.events-section",
+        "homepage.distribution-point-section"
+      ]
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "kind": "singleType",
+  "collectionName": "license_partners",
+  "info": {
+    "singularName": "license-partner",
+    "pluralName": "license-partners",
+    "displayName": "License Partner",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "partners": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::partner.partner"
+    }
+  }
+}

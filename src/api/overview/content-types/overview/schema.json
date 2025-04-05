@@ -1,0 +1,78 @@
+{
+  "kind": "singleType",
+  "collectionName": "overviews",
+  "info": {
+    "singularName": "overview",
+    "pluralName": "overviews",
+    "displayName": "Overview",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "hero_title": {
+      "type": "string"
+    },
+    "hero_description": {
+      "type": "text"
+    },
+    "hero_images": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "mission_title": {
+      "type": "string"
+    },
+    "mission_description": {
+      "type": "text"
+    },
+    "what_we_do_title": {
+      "type": "string"
+    },
+    "what_we_do_items": {
+      "displayName": "What We Do Section",
+      "type": "component",
+      "repeatable": true,
+      "component": "overview.what-we-do-section"
+    },
+    "partners_statement": {
+      "type": "text"
+    },
+    "partners_images": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "milestone_title": {
+      "type": "string"
+    },
+    "milestones": {
+      "displayName": "Milestone Section",
+      "type": "component",
+      "repeatable": true,
+      "component": "overview.milestone-section"
+    },
+    "awards_title": {
+      "type": "string"
+    },
+    "awards": {
+      "displayName": "Awards Section",
+      "type": "component",
+      "repeatable": true,
+      "component": "overview.awards-section"
+    }
+  }
+}

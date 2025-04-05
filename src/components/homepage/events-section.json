@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_homepage_events_sections",
+  "info": {
+    "displayName": "Events Section"
+  },
+  "options": {},
+  "attributes": {
+    "events": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::event.event"
+    }
+  }
+}

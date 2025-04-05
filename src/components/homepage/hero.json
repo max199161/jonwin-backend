@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_homepage_heroes",
+  "info": {
+    "displayName": "Hero Section",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Hero_Slide": {
+      "displayName": "Hero Slide",
+      "type": "component",
+      "repeatable": true,
+      "component": "homepage.hero-slide"
+    }
+  }
+}

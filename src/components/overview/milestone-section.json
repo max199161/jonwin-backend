@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_overview_milestone_sections",
+  "info": {
+    "displayName": "Milestone Section",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "year": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "logo": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": true
+    }
+  }
+}

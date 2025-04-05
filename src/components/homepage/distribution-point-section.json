@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_homepage_distribution_point_sections",
+  "info": {
+    "displayName": "Distribution Point Section",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "highlight_number": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "cta_text": {
+      "type": "string"
+    },
+    "cta_link": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "kind": "singleType",
+  "collectionName": "retail_points",
+  "info": {
+    "singularName": "retail-point",
+    "pluralName": "retail-points",
+    "displayName": "Retail Point",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "retail_point_logos": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "retail_point_title": {
+      "type": "string"
+    },
+    "stores": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::store.store"
+    }
+  }
+}

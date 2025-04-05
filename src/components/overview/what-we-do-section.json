@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_overview_what_we_do_sections",
+  "info": {
+    "displayName": "What We Do Section"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "icon": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "description": {
+      "type": "text"
+    }
+  }
+}

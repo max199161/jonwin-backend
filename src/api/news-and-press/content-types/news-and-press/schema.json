@@ -1,0 +1,65 @@
+{
+  "kind": "collectionType",
+  "collectionName": "news_and_presses",
+  "info": {
+    "singularName": "news-and-press",
+    "pluralName": "news-and-presses",
+    "displayName": "News and Press",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
+    },
+    "cover_image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "content": {
+      "type": "customField",
+      "options": {
+        "preset": "defaultHtml"
+      },
+      "customField": "plugin::ckeditor5.CKEditor"
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "press-release",
+        "company-news",
+        "event"
+      ],
+      "default": "company-news"
+    },
+    "gallery": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "date": {
+      "type": "date"
+    },
+    "author": {
+      "type": "string"
+    }
+  }
+}

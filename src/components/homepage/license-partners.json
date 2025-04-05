@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_homepage_license_partners",
+  "info": {
+    "displayName": "License Partners",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "partners": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::partner.partner"
+    }
+  }
+}

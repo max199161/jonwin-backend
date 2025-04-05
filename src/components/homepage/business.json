@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_homepage_businesses",
+  "info": {
+    "displayName": "Business",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "learn_more_link": {
+      "type": "string"
+    }
+  }
+}

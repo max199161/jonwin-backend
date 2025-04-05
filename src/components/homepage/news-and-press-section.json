@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_homepage_news_and_press_sections",
+  "info": {
+    "displayName": "News and Press Section"
+  },
+  "options": {},
+  "attributes": {
+    "news_and_presses": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::news-and-press.news-and-press"
+    }
+  }
+}

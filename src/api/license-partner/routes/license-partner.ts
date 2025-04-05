@@ -1,0 +1,7 @@
+/**
+ * license-partner router
+ */
+
+import { factories } from '@strapi/strapi';
+
+export default factories.createCoreRouter('api::license-partner.license-partner');

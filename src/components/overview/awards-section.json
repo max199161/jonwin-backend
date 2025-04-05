@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_overview_awards_sections",
+  "info": {
+    "displayName": "Awards Section"
+  },
+  "options": {},
+  "attributes": {
+    "year": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "award_name": {
+      "type": "string"
+    }
+  }
+}

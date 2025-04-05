@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_homepage_business_sections",
+  "info": {
+    "displayName": "Business Section",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Business": {
+      "displayName": "Business",
+      "type": "component",
+      "repeatable": true,
+      "component": "homepage.business"
+    },
+    "title": {
+      "type": "string"
+    }
+  }
+}
