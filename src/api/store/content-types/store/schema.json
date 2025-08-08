@@ -61,6 +61,14 @@
       "relation": "oneToMany",
       "target": "api::location.location",
       "mappedBy": "store"
+    },
+    "storefront_image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
     }
   }
 }

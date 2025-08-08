@@ -731,6 +731,8 @@ export interface ApiStoreStore extends Struct.CollectionTypeSchema {
     products: Schema.Attribute.Media<'images', true>;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.UID<'name'>;
+    storefront_image: Schema.Attribute.Media<'images'> &
+      Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

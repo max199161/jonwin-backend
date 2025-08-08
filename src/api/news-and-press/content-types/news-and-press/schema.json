@@ -27,9 +27,7 @@
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": [
-        "images"
-      ]
+      "allowedTypes": ["images"]
     },
     "content": {
       "type": "customField",
@@ -40,20 +38,14 @@
     },
     "category": {
       "type": "enumeration",
-      "enum": [
-        "press-release",
-        "company-news",
-        "event"
-      ],
+      "enum": ["press-release", "company-news", "event"],
       "default": "company-news"
     },
     "gallery": {
       "type": "media",
       "multiple": true,
       "required": false,
-      "allowedTypes": [
-        "images"
-      ]
+      "allowedTypes": ["images"]
     },
     "date": {
       "type": "date"
