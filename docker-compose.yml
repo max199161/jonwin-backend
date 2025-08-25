@@ -1,0 +1,78 @@
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: strapi
+      POSTGRES_USER: strapi
+      POSTGRES_PASSWORD: strapi
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database/migrations:/docker-entrypoint-initdb.d
+      - ./scripts:/scripts
+    ports:
+      - "5432:5432"
+    networks:
+      - strapi-network
+
+  # Database Restore Service (runs once)
+  db-restore:
+    image: postgres:17-alpine
+    depends_on:
+      - postgres
+    volumes:
+      - ./database/migrations:/docker-entrypoint-initdb.d
+      - ./scripts:/scripts
+    networks:
+      - strapi-network
+    command: ["/scripts/restore-db.sh"]
+    restart: "no"
+
+  # Strapi Application (Development)
+  strapi:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    restart: unless-stopped
+    environment:
+      DATABASE_CLIENT: postgres
+      DATABASE_HOST: postgres
+      DATABASE_PORT: 5432
+      DATABASE_NAME: strapi
+      DATABASE_USERNAME: strapi
+      DATABASE_PASSWORD: strapi
+      NODE_ENV: development
+    volumes:
+      - ./:/app
+      - /app/node_modules
+      - uploads_data:/app/public/uploads
+    ports:
+      - "1337:1337"
+    depends_on:
+      - postgres
+      - db-restore
+    networks:
+      - strapi-network
+
+  # PgAdmin (Optional - for database management)
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@strapi.local
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+    depends_on:
+      - postgres
+    networks:
+      - strapi-network
+
+volumes:
+  postgres_data:
+  uploads_data:
+
+networks:
+  strapi-network:
+    driver: bridge
