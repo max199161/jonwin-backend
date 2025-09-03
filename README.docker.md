@@ -1,267 +1,248 @@
-# Docker Development Setup for Strapi
+# Jowin Strapi Docker Setup
 
-This guide will help you set up a Docker environment for your Strapi application with PostgreSQL 17 database restoration and data persistence.
+## 📁 Docker Files Overview
 
-## Prerequisites
+- **`Dockerfile`** - Strapi application container configuration (Node.js 18)
+- **`docker-compose.yml`** - Production services orchestration
+- **`docker-compose.override.yml`** - Development overrides
+- **`.env.docker`** - Environment variables for Docker
+- **`.dockerignore`** - Files to exclude from Docker contextepository contains Docker configuration for running the Jowin Strapi application with PostgreSQL database.
+
+## 🚀 Quick Start
+
+### Prerequisites
 
 - Docker and Docker Compose installed
-- Your database dump file: `database/migrations/jonwin_2025-08-25.dump` (PostgreSQL 17.5 format)
+- macOS/Linux environment (for shell scripts)
 
-## ⚡ Quick Start
-
-### One-Command Setup
+### 1. Initial Setup
 
 ```bash
+# Run the setup script (this will generate secrets and start services)
 ./setup-docker.sh
 ```
 
-This single command will:
-
-- Create environment file
-- Build Docker containers
-- Start all services
-- Restore your database automatically
-- Verify everything is working
-
-## 📋 Available Scripts
-
-### 🚀 `./setup-docker.sh`
-
-**Purpose:** Complete Docker environment setup from scratch
-
-**What it does:**
-
-- Checks Docker installation
-- Creates `.env` file from template
-- Creates necessary directories (`database/backups`, `public/uploads`)
-- Makes all scripts executable
-- Stops any existing containers
-- Builds containers with fresh cache
-- Starts all services
-- Waits for services to be ready
-- Shows access URLs and usage tips
-
-### 🔄 `./scripts/reset-and-restore.sh`
-
-**Purpose:** Complete database reset and restoration
-
-**What it does:**
-
-- Stops all Docker services
-- Removes only the database volume (keeps uploads)
-- Rebuilds and starts services
-- Waits for restoration to complete
-- Shows restoration logs
-- Verifies database content
-- Displays final status
-
-### 💾 `./scripts/backup-db.sh`
-
-**Purpose:** Create database backup
-
-**What it does:**
-
-- Creates timestamped backup file in `database/backups/`
-- Uses `pg_dump` with custom format
-- Connects to running PostgreSQL container
-- Includes all data, schema, and sequences
-- Provides backup confirmation
-
-### 🔧 `./scripts/restore-db.sh`
-
-**Purpose:** Restore database from dump (runs automatically)
-
-**What it does:**
-
-- Waits for PostgreSQL to be ready
-- Checks if database already has data (skips if > 5 tables)
-- Drops and recreates database for clean restore
-- Restores using `pg_restore` with PostgreSQL 17 compatibility
-- Handles both structure and data restoration
-- Verifies restoration success
-- Shows table count and sample data
-
-### 🏥 `./scripts/health-check.sh`
-
-**Purpose:** System health verification
-
-**What it does:**
-
-- Shows Docker service status
-- Displays container resource usage
-- Shows Docker volume usage
-- Tests Strapi health endpoint
-- Tests PostgreSQL connection
-- Shows recent logs from all services
-- Provides system overview
-
-## 🛠️ Manual Commands
-
-### Environment Setup
-
-Copy the environment example file:
+### 2. Restore Database
 
 ```bash
-cp .env.example .env
+# Restore your database backup (jonwin_2025-08-25.dump)
+./scripts/restore-db.sh
 ```
 
-Update the `.env` file with your specific configuration if needed.
+### 3. Access Application
 
-### Development Environment
-
-Start the development environment:
-
-```bash
-docker-compose up -d
-```
-
-This will:
-
-- Start PostgreSQL 17 database
-- Restore your database dump automatically
-- Start Strapi in development mode with hot reload
-- Start PgAdmin for database management (optional)
-
-### Production Environment
-
-For production deployment:
-
-```bash
-docker-compose -f docker-compose.prod.yml up -d
-```
-
-## 🌐 Access Points
-
-- **Strapi Admin**: http://localhost:1337/admin
+- **Strapi Admin Panel**: http://localhost:1337/admin
 - **Strapi API**: http://localhost:1337/api
-- **Strapi Health**: http://localhost:1337/\_health
-- **PgAdmin**: http://localhost:5050 (admin@strapi.local / admin)
-- **PostgreSQL**: localhost:5432 (strapi/strapi)
+- **Database Admin (Adminer)**: http://localhost:9090
+- **Database Direct Connection**: localhost:5432
 
-## 💾 Data Persistence
+## � Docker Files Overview
 
-Your data is automatically persisted using Docker volumes:
+- **`Dockerfile`** - Strapi application container configuration
+- **`docker-compose.yml`** - Production services orchestration
+- **`docker-compose.override.yml`** - Development overrides
+- **`.env.docker`** - Environment variables for Docker
+- **`.dockerignore`** - Files to exclude from Docker context
 
-- **Database data**: `postgres_data` volume (PostgreSQL 17 data)
-- **Uploaded files**: `uploads_data` volume (Strapi media files)
+## �️ Available Commands
 
-**Important:** Even if you delete containers with `docker-compose down`, your data remains safe in these volumes.
+All commands are defined in `package.json` for convenience:
 
-## 🗃️ Database Management
+```bash
+# Container Management
+npm run docker:setup      # Initial setup with secret generation
+npm run docker:start      # Start all services
+npm run docker:stop       # Stop all services
+npm run docker:restart    # Restart all services
+npm run docker:clean      # Stop and remove containers + volumes
 
-### Automatic Restore
+# Monitoring & Maintenance
+npm run docker:logs       # View container logs
+npm run docker:health     # Check service health
+npm run docker:backup     # Create database backup
+```
 
-The database dump (`jonwin_2025-08-25.dump`) will be automatically restored when you first start the containers. The restore script:
+## 🔧 Manual Commands
 
-- Checks if database already has significant data (>5 tables)
-- Skips restoration if data exists
-- Uses PostgreSQL 17 for full compatibility
-- Restores complete data structure and content
+If you prefer using Docker Compose directly:
 
-### Manual Database Operations
+```bash
+# Start services
+docker-compose up -d
 
-**Create Backup:**
+# Stop services
+docker-compose down
+
+# View logs
+docker-compose logs -f
+
+# Rebuild images
+docker-compose build --no-cache
+```
+
+## �️ Database Management
+
+### Restore Database
+
+```bash
+./scripts/restore-db.sh
+```
+
+### Create Backup
 
 ```bash
 ./scripts/backup-db.sh
 ```
 
-Saves timestamped backup in `database/backups/`
-
-**Force Database Reset:**
+### Connect to Database
 
 ```bash
-./scripts/reset-and-restore.sh
+# Using psql
+docker exec -it strapi-strapiDB-1 psql -U strapi -d strapi
+
+# Using Adminer (Web UI)
+# Go to http://localhost:9090
+# Server: strapiDB
+# Username: strapi
+# Password: strapi
+# Database: strapi
 ```
 
-Completely resets database and restores from dump
+## � Security Configuration
 
-**Check Database Status:**
+The setup script automatically generates secure secrets for:
+
+- `APP_KEYS`
+- `API_TOKEN_SALT`
+- `ADMIN_JWT_SECRET`
+- `TRANSFER_TOKEN_SALT`
+- `JWT_SECRET`
+
+These are stored in `.env.docker`. **Keep this file secure and never commit it to version control.**
+
+## 🌍 Environment Configurations
+
+### Development (default)
+
+- Hot reload enabled
+- Source code mounted as volumes
+- Development database settings
+
+### Production
 
 ```bash
-docker-compose exec postgres psql -U strapi -d strapi -c "SELECT schemaname, relname, n_tup_ins FROM pg_stat_user_tables WHERE schemaname = 'public' ORDER BY n_tup_ins DESC LIMIT 10;"
+# Set NODE_ENV to production in .env.docker
+NODE_ENV=production
+
+# Restart services
+npm run docker:restart
 ```
 
-**Manual Restore (if needed):**
-
-```bash
-docker-compose exec postgres pg_restore -U strapi -d strapi -v --clean --if-exists --no-owner --no-privileges /docker-entrypoint-initdb.d/jonwin_2025-08-25.dump
-```
-
-## 🐳 Container Management
-
-### Start services
-
-```bash
-docker-compose up -d
-```
-
-### Stop services
-
-```bash
-docker-compose down
-```
-
-### Stop services and remove containers (data persists)
-
-```bash
-docker-compose down --remove-orphans
-```
-
-### View logs
-
-```bash
-docker-compose logs -f strapi
-docker-compose logs -f postgres
-```
-
-### Rebuild containers
-
-```bash
-docker-compose down
-docker-compose build --no-cache
-docker-compose up -d
-```
+## 📊 Monitoring
 
 ### Health Check
 
 ```bash
-./scripts/health-check.sh
+npm run docker:health
 ```
 
-## 📦 Volume Management
-
-### List volumes
+### View Logs
 
 ```bash
-docker volume ls
+# All services
+npm run docker:logs
+
+# Specific service
+docker-compose logs -f strapi
+docker-compose logs -f strapiDB
 ```
 
-### Backup volumes to files
+## 🔧 Troubleshooting
+
+### Services Won't Start
+
+1. Check if ports are available:
+
+   ```bash
+   lsof -i :1337  # Strapi
+   lsof -i :5432  # PostgreSQL
+   lsof -i :9090  # Adminer
+   ```
+
+2. Check Docker status:
+   ```bash
+   docker ps
+   docker-compose ps
+   ```
+
+### Database Connection Issues
+
+1. Ensure database container is running:
+
+   ```bash
+   docker ps | grep strapiDB
+   ```
+
+2. Check database logs:
+   ```bash
+   docker-compose logs strapiDB
+   ```
+
+### Reset Everything
 
 ```bash
-# Backup database volume
-docker run --rm -v strapi_postgres_data:/data -v $(pwd):/backup alpine tar czf /backup/postgres_backup.tar.gz -C /data .
-
-# Backup uploads volume
-docker run --rm -v strapi_uploads_data:/data -v $(pwd):/backup alpine tar czf /backup/uploads_backup.tar.gz -C /data .
+npm run docker:clean
+npm run docker:setup
+./scripts/restore-db.sh
 ```
 
-### Restore volumes from files
+## 🏗️ Architecture
 
-```bash
-# Restore database volume
-docker run --rm -v strapi_postgres_data:/data -v $(pwd):/backup alpine tar xzf /backup/postgres_backup.tar.gz -C /data
-
-# Restore uploads volume
-docker run --rm -v strapi_uploads_data:/data -v $(pwd):/backup alpine tar xzf /backup/uploads_backup.tar.gz -C /data
+```
+┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
+│                 │    │                  │    │                 │
+│   Strapi App    │────│   PostgreSQL     │    │    Adminer      │
+│   (Port 1337)   │    │   (Port 5432)    │    │   (Port 9090)   │
+│                 │    │                  │    │                 │
+└─────────────────┘    └──────────────────┘    └─────────────────┘
 ```
 
-### Remove volumes (⚠️ WARNING: This will delete all data)
+## 📝 File Structure
 
-```bash
-docker-compose down -v
 ```
+strapi/
+├── docker-compose.yml          # Main orchestration file
+├── docker-compose.override.yml # Development overrides
+├── Dockerfile                  # Strapi app container
+├── .env.docker                 # Environment variables
+├── .dockerignore              # Docker ignore file
+├── setup-docker.sh            # Initial setup script
+├── scripts/
+│   ├── restore-db.sh          # Database restoration
+│   ├── backup-db.sh           # Database backup
+│   └── health-check.sh        # Health monitoring
+└── database/
+    └── migrations/
+        └── jonwin_2025-08-25.dump  # Your database backup
+```
+
+## 🤝 Contributing
+
+When making changes to the Docker configuration:
+
+1. Test with development environment first
+2. Update documentation if needed
+3. Ensure scripts remain executable
+4. Test database restoration process
+
+## 📞 Support
+
+For issues with the Docker setup:
+
+1. Check the troubleshooting section above
+2. Run health check: `npm run docker:health`
+3. Check logs: `npm run docker:logs`
+4. Try clean restart: `npm run docker:clean && npm run docker:setup`
 
 ## 🔄 Development Workflow
 
