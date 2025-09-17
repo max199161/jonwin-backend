@@ -129,3 +129,26 @@ dist
 build
 .strapi-updater.json
 .strapi-cloud.json
+
+############################
+# Docker
+############################
+
+# Docker environment files with secrets
+.env.docker
+.env.docker.prod
+
+# Docker volumes and data
+docker-compose.override.yml.backup
+*.tar.gz
+
+# Database dumps (keep the restore dump but ignore new backups)
+database/backups/*
+!database/backups/.gitkeep
+!database/migrations/jonwin_2025-08-25.dump
+
+# Docker logs
+docker-logs/
+
+# Docker build context
+.dockerignore.bak
