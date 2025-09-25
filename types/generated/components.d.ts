@@ -182,6 +182,22 @@ export interface OverviewWhatWeDoSection extends Struct.ComponentSchema {
   };
 }
 
+export interface WholesaleSection extends Struct.ComponentSchema {
+  collectionName: 'components_wholesale_sections';
+  info: {
+    description: '';
+    displayName: 'Highlight Grid';
+  };
+  attributes: {
+    buttonLabel: Schema.Attribute.String;
+    buttonUrl: Schema.Attribute.String;
+    description: Schema.Attribute.Blocks;
+    openInNewTab: Schema.Attribute.Boolean;
+    sequence: Schema.Attribute.String;
+    title: Schema.Attribute.String;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
@@ -198,6 +214,7 @@ declare module '@strapi/strapi' {
       'overview.awards-section': OverviewAwardsSection;
       'overview.milestone-section': OverviewMilestoneSection;
       'overview.what-we-do-section': OverviewWhatWeDoSection;
+      'wholesale.section': WholesaleSection;
     }
   }
 }

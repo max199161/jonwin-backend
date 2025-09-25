@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_wholesale_sections",
+  "info": {
+    "displayName": "Highlight Grid",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "sequence": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "blocks"
+    },
+    "buttonLabel": {
+      "type": "string"
+    },
+    "buttonUrl": {
+      "type": "string"
+    },
+    "openInNewTab": {
+      "type": "boolean"
+    }
+  }
+}
