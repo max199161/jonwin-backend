@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_oversea_benefits",
+  "info": {
+    "displayName": "benefits",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    }
+  }
+}

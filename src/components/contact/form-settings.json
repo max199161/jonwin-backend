@@ -1,0 +1,43 @@
+{
+  "collectionName": "components_contact_form_settings",
+  "info": {
+    "displayName": "Form Settings",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "form_title": {
+      "type": "string"
+    },
+    "form_description": {
+      "type": "text"
+    },
+    "submit_button_text": {
+      "type": "string"
+    },
+    "success_message": {
+      "type": "text"
+    },
+    "error_message": {
+      "type": "text"
+    },
+    "enquiry_types": {
+      "type": "enumeration",
+      "enum": [
+        "General",
+        "Support",
+        "Partnership"
+      ]
+    },
+    "title_options": {
+      "type": "enumeration",
+      "enum": [
+        "Mr",
+        "Ms",
+        "Mrs",
+        "Dr",
+        "Prof"
+      ]
+    }
+  }
+}

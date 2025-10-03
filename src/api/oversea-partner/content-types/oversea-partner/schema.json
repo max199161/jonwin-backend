@@ -1,0 +1,35 @@
+{
+  "kind": "singleType",
+  "collectionName": "oversea_partners",
+  "info": {
+    "singularName": "oversea-partner",
+    "pluralName": "oversea-partners",
+    "displayName": "Oversea Partner",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "benefitsTitle": {
+      "type": "string"
+    },
+    "benefitItem": {
+      "displayName": "benefits",
+      "type": "component",
+      "repeatable": true,
+      "component": "oversea.benefits"
+    },
+    "ctaButton": {
+      "type": "component",
+      "repeatable": false,
+      "component": "global.cta-button"
+    }
+  }
+}

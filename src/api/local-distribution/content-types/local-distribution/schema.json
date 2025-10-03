@@ -1,0 +1,46 @@
+{
+  "kind": "singleType",
+  "collectionName": "local_distributions",
+  "info": {
+    "singularName": "local-distribution",
+    "pluralName": "local-distributions",
+    "displayName": "Local Distribution",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "featureCard": {
+      "displayName": "features",
+      "type": "component",
+      "repeatable": true,
+      "component": "local.features"
+    },
+    "logisticsTitle": {
+      "type": "string"
+    },
+    "InfoBlock": {
+      "displayName": "logistics_Items",
+      "type": "component",
+      "repeatable": true,
+      "component": "local.logistics-items"
+    },
+    "ctaTitle": {
+      "type": "string"
+    },
+    "Button": {
+      "displayName": "ctaButton",
+      "type": "component",
+      "repeatable": false,
+      "component": "global.cta-button"
+    }
+  }
+}

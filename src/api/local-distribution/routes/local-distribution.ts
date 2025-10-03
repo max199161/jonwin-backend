@@ -1,0 +1,7 @@
+/**
+ * local-distribution router
+ */
+
+import { factories } from '@strapi/strapi';
+
+export default factories.createCoreRouter('api::local-distribution.local-distribution');

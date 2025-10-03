@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_global_cta_buttons",
+  "info": {
+    "displayName": "CTA Button",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "string"
+    },
+    "link": {
+      "type": "string"
+    }
+  }
+}

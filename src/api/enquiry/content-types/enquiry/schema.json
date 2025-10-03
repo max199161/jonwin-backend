@@ -1,0 +1,62 @@
+{
+  "kind": "collectionType",
+  "collectionName": "enquiries",
+  "info": {
+    "singularName": "enquiry",
+    "pluralName": "enquiries",
+    "displayName": "Enquiry"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "enumeration",
+      "enum": [
+        "Mr",
+        "Ms",
+        "Mrs",
+        "Dr",
+        "Prof"
+      ]
+    },
+    "first_name": {
+      "type": "string"
+    },
+    "last_name": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "enquiry_type": {
+      "type": "enumeration",
+      "enum": [
+        "General",
+        "Support",
+        "Partnership"
+      ]
+    },
+    "message": {
+      "type": "text"
+    },
+    "enquiry_status": {
+      "type": "enumeration",
+      "enum": [
+        "new",
+        "in-progress",
+        "resolved",
+        "closed"
+      ]
+    },
+    "ip_address": {
+      "type": "string"
+    },
+    "user_agent": {
+      "type": "string"
+    }
+  }
+}

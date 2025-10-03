@@ -1,0 +1,41 @@
+{
+  "collectionName": "components_contact_social_medias",
+  "info": {
+    "displayName": "Social Media",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "platform": {
+      "type": "enumeration",
+      "enum": [
+        "wechat",
+        "twitter",
+        "xiaohongshu",
+        "instagram",
+        "facebook",
+        "linkedin"
+      ]
+    },
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "url": {
+      "type": "string"
+    },
+    "username": {
+      "type": "string"
+    },
+    "is_active": {
+      "type": "boolean"
+    }
+  }
+}

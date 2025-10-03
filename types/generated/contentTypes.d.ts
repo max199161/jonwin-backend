@@ -369,6 +369,81 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiContactContact extends Struct.SingleTypeSchema {
+  collectionName: 'contacts';
+  info: {
+    description: '';
+    displayName: 'Contact';
+    pluralName: 'contacts';
+    singularName: 'contact';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    contactInfo: Schema.Attribute.Component<'contact.contact-info', false>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    formSettings: Schema.Attribute.Component<'contact.form-settings', false>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::contact.contact'
+    > &
+      Schema.Attribute.Private;
+    mapSettings: Schema.Attribute.Component<'contact.map-settings', false>;
+    publishedAt: Schema.Attribute.DateTime;
+    socialMedia: Schema.Attribute.Component<'contact.social-media', true>;
+    subtitle: Schema.Attribute.String;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiEnquiryEnquiry extends Struct.CollectionTypeSchema {
+  collectionName: 'enquiries';
+  info: {
+    displayName: 'Enquiry';
+    pluralName: 'enquiries';
+    singularName: 'enquiry';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    email: Schema.Attribute.Email;
+    enquiry_status: Schema.Attribute.Enumeration<
+      ['new', 'in-progress', 'resolved', 'closed']
+    >;
+    enquiry_type: Schema.Attribute.Enumeration<
+      ['General', 'Support', 'Partnership']
+    >;
+    first_name: Schema.Attribute.String;
+    ip_address: Schema.Attribute.String;
+    last_name: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::enquiry.enquiry'
+    > &
+      Schema.Attribute.Private;
+    message: Schema.Attribute.Text;
+    phone: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.Enumeration<['Mr', 'Ms', 'Mrs', 'Dr', 'Prof']>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    user_agent: Schema.Attribute.String;
+  };
+}
+
 export interface ApiEventEvent extends Struct.CollectionTypeSchema {
   collectionName: 'events';
   info: {
@@ -490,6 +565,42 @@ export interface ApiLicensePartnerLicensePartner
   };
 }
 
+export interface ApiLocalDistributionLocalDistribution
+  extends Struct.SingleTypeSchema {
+  collectionName: 'local_distributions';
+  info: {
+    description: '';
+    displayName: 'Local Distribution';
+    pluralName: 'local-distributions';
+    singularName: 'local-distribution';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Button: Schema.Attribute.Component<'global.cta-button', false>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    ctaTitle: Schema.Attribute.String;
+    description: Schema.Attribute.Text;
+    featureCard: Schema.Attribute.Component<'local.features', true>;
+    InfoBlock: Schema.Attribute.Component<'local.logistics-items', true>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::local-distribution.local-distribution'
+    > &
+      Schema.Attribute.Private;
+    logisticsTitle: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiLocationLocation extends Struct.CollectionTypeSchema {
   collectionName: 'locations';
   info: {
@@ -575,6 +686,40 @@ export interface ApiNewsAndPressNewsAndPress
     >;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.UID<'title'>;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiOverseaPartnerOverseaPartner
+  extends Struct.SingleTypeSchema {
+  collectionName: 'oversea_partners';
+  info: {
+    description: '';
+    displayName: 'Oversea Partner';
+    pluralName: 'oversea-partners';
+    singularName: 'oversea-partner';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    benefitItem: Schema.Attribute.Component<'oversea.benefits', true>;
+    benefitsTitle: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    ctaButton: Schema.Attribute.Component<'global.cta-button', false>;
+    description: Schema.Attribute.Text;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::oversea-partner.oversea-partner'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
     title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -1330,11 +1475,15 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::contact.contact': ApiContactContact;
+      'api::enquiry.enquiry': ApiEnquiryEnquiry;
       'api::event.event': ApiEventEvent;
       'api::home.home': ApiHomeHome;
       'api::license-partner.license-partner': ApiLicensePartnerLicensePartner;
+      'api::local-distribution.local-distribution': ApiLocalDistributionLocalDistribution;
       'api::location.location': ApiLocationLocation;
       'api::news-and-press.news-and-press': ApiNewsAndPressNewsAndPress;
+      'api::oversea-partner.oversea-partner': ApiOverseaPartnerOverseaPartner;
       'api::overview.overview': ApiOverviewOverview;
       'api::partner.partner': ApiPartnerPartner;
       'api::retail-point.retail-point': ApiRetailPointRetailPoint;
