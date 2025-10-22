@@ -12,15 +12,7 @@
     "start": "strapi start",
     "strapi": "strapi",
     "upgrade": "npx @strapi/upgrade latest",
-    "upgrade:dry": "npx @strapi/upgrade latest --dry",
-    "docker:setup": "./setup-docker.sh",
-    "docker:start": "docker-compose up -d",
-    "docker:stop": "docker-compose down",
-    "docker:restart": "docker-compose restart",
-    "docker:logs": "docker-compose logs -f",
-    "docker:health": "./scripts/health-check.sh",
-    "docker:backup": "./scripts/backup-db.sh",
-    "docker:clean": "docker-compose down -v && docker system prune -f"
+    "upgrade:dry": "npx @strapi/upgrade latest --dry"
   },
   "dependencies": {
     "@_sh/strapi-plugin-ckeditor": "^5.0.2",

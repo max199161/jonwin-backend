@@ -925,6 +925,11 @@ export interface ApiWholesaleWholesale extends Struct.SingleTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    why_choose_us_item: Schema.Attribute.Component<
+      'wholesale.why-choose-us',
+      true
+    >;
+    why_choose_us_title: Schema.Attribute.String;
   };
 }
 

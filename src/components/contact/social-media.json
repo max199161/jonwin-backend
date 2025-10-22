@@ -36,6 +36,16 @@
     },
     "is_active": {
       "type": "boolean"
+    },
+    "qr_code": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
     }
   }
 }

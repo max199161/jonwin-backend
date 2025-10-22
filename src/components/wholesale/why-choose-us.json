@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_wholesale_why_choose_uses",
+  "info": {
+    "displayName": "Why Choose Us"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    }
+  }
+}

@@ -61,6 +61,7 @@ export interface ContactSocialMedia extends Struct.ComponentSchema {
     platform: Schema.Attribute.Enumeration<
       ['wechat', 'twitter', 'xiaohongshu', 'instagram', 'facebook', 'linkedin']
     >;
+    qr_code: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     url: Schema.Attribute.String;
     username: Schema.Attribute.String;
   };
@@ -314,6 +315,17 @@ export interface WholesaleSection extends Struct.ComponentSchema {
   };
 }
 
+export interface WholesaleWhyChooseUs extends Struct.ComponentSchema {
+  collectionName: 'components_wholesale_why_choose_uses';
+  info: {
+    displayName: 'Why Choose Us';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    title: Schema.Attribute.String;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
@@ -339,6 +351,7 @@ declare module '@strapi/strapi' {
       'overview.milestone-section': OverviewMilestoneSection;
       'overview.what-we-do-section': OverviewWhatWeDoSection;
       'wholesale.section': WholesaleSection;
+      'wholesale.why-choose-us': WholesaleWhyChooseUs;
     }
   }
 }

@@ -44,6 +44,15 @@
       "type": "component",
       "repeatable": true,
       "component": "wholesale.section"
+    },
+    "why_choose_us_title": {
+      "type": "string"
+    },
+    "why_choose_us_item": {
+      "displayName": "Why Choose Us",
+      "type": "component",
+      "repeatable": true,
+      "component": "wholesale.why-choose-us"
     }
   }
 }
